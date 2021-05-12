@@ -11,10 +11,10 @@ export class CountdownComponent implements OnInit {
   currDate: Date = new Date();
   years;
   months;
-  hours = 20;
+  hours = 0;
   minutes;
   seconds;
-  days = 2;
+  days = 1;
   secondsSubscription = new Subscription();
   hoursSubscription = new Subscription();
   minutesSubscription = new Subscription();
@@ -39,7 +39,12 @@ export class CountdownComponent implements OnInit {
         .subscribe(i => {
           if (i == 0) {
             if (this.hours === 0) {
-              this.minutesSubscription.unsubscribe();
+              if (this.days > 0) {
+                this.hours = 24;
+                this.manageMinutes(60);
+              } else {
+                this.minutesSubscription.unsubscribe();
+              }
             }
             if (this.hours > 0) {
               this.hours--;
@@ -59,9 +64,16 @@ export class CountdownComponent implements OnInit {
         )
         .subscribe(i => {
           if (this.minutes === 0 && this.hours === 0) {
+            if (this.days > 0) {
+              this.days--;
+              this.hours = 24;
+              this.minutes = 60;
+              return;
+            }
             this.secondsSubscription.unsubscribe();
           }
           if (i == 0) {
+            // this.minutes = 60;
             this.manageSeconds();
           }
           this.seconds = i;
