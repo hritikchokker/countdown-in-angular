@@ -3,7 +3,7 @@
 <app-countdown [formDetails]="formValues"></app-countdown>
 
 <!-- <div class="countdown-form"> -->
-<form [formGroup]="countdownForm" class="countdown-form">
+<form *ngIf="false" [formGroup]="countdownForm" class="countdown-form">
   <label>
     Days: <input formControlName="days" placeholder="Days" type="number" />
   </label>

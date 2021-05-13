@@ -16,20 +16,19 @@ export class CountdownComponent implements OnInit {
   days = 10;
   @Input() set formDetails({ days, hours, minutes, seconds }) {
     if (days && hours && minutes && seconds) {
-      this.days = days;
-      this.hours = hours;
-      this.minutes = minutes;
-      this.seconds = seconds;
-      this.secondsSubscription.unsubscribe();
-      this.manageCountDown(seconds);
+      // this.days = days;
+      // this.hours = hours;
+      // this.minutes = minutes;
+      // debugger;
+      // this.seconds = seconds;
+      // this.secondsSubscription.unsubscribe();
+      // this.manageCountDown(seconds);
     }
   }
   secondsSubscription = new Subscription();
-  hoursSubscription = new Subscription();
-  minutesSubscription = new Subscription();
   constructor() {}
   ngOnInit(): void {
-    // this.manageCountDown();
+    this.manageCountDown();
   }
   manageCountDown(start = 59) {
     this.secondsSubscription.add(
