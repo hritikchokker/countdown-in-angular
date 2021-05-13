@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { of, Subscription, timer } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
@@ -8,19 +8,28 @@ import { map, take } from 'rxjs/operators';
   styleUrls: ['./countdown.component.css']
 })
 export class CountdownComponent implements OnInit {
-  currDate: Date = new Date();
   years;
   months;
   hours = 1;
   minutes = 10;
   seconds = 10;
   days = 10;
+  @Input() set formDetails({ days, hours, minutes, seconds }) {
+    if (days && hours && minutes && seconds) {
+      this.days = days;
+      this.hours = hours;
+      this.minutes = minutes;
+      this.seconds = seconds;
+      this.secondsSubscription.unsubscribe();
+      this.manageCountDown(seconds);
+    }
+  }
   secondsSubscription = new Subscription();
   hoursSubscription = new Subscription();
   minutesSubscription = new Subscription();
   constructor() {}
   ngOnInit(): void {
-    this.manageCountDown();
+    // this.manageCountDown();
   }
   manageCountDown(start = 59) {
     this.secondsSubscription.add(
@@ -54,14 +63,6 @@ export class CountdownComponent implements OnInit {
               this.manageCountDown();
               return;
             }
-            // if (this.hours === 0 && this.minutes === 0 && this.days > 0) {
-            //   this.days--;
-            //   this.hours = 23;
-            //   this.minutes = 59;
-            //   this.manageCountDown();
-            //   return;
-            // }
-            // this.manageCountDown();
           }
         })
     );

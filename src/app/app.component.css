@@ -1,3 +1,28 @@
 p {
   font-family: Lato;
 }
+h1 {
+  text-align: center;
+}
+
+.countdown-form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.countdown-form > label {
+  margin-top: 20px;
+}
+.countdown-form > button {
+  margin-top: 20px;
+  text-align: center;
+  padding: 10px;
+  background-color: #6078ea;
+  border-radius: 10px;
+  color: white;
+  box-shadow: salmon;
+}
+.countdown-form > button:hover {
+  transform: scale(1.1);
+  transition: 0.2s all ease;
+}

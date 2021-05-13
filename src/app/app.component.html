@@ -1,3 +1,23 @@
 <h1>CountDown in angular</h1>
 
-<app-countdown></app-countdown>
+<app-countdown [formDetails]="formValues"></app-countdown>
+
+<!-- <div class="countdown-form"> -->
+<form [formGroup]="countdownForm" class="countdown-form">
+  <label>
+    Days: <input formControlName="days" placeholder="Days" type="number" />
+  </label>
+  <label>
+    Hours: <input formControlName="hours" placeholder="Hours" type="number" />
+  </label>
+  <label>
+    Minutes: <input formControlName="minutes" placeholder="Minutes" type="number" />
+  </label>
+  <label>
+    Seconds: <input formControlName="seconds" placeholder="Seconds" type="number" />
+  </label>
+  <button (click)="updateValues()" *ngIf="countdownForm?.valid">
+    Create Countdown
+  </button>
+</form>
+<!-- </div> -->
