@@ -16,7 +16,7 @@
   <label>
     Seconds: <input formControlName="seconds" placeholder="Seconds" type="number" />
   </label>
-  <button (click)="updateValues()" *ngIf="countdownForm?.valid">
+  <button (click)="updateValues()" *ngIf="countdownForm&& countdownForm?.valid">
     Create Countdown
   </button>
 </form>

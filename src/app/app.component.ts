@@ -13,7 +13,7 @@ export class AppComponent {
   constructor(private $fb: FormBuilder) {
     this.createForm();
   }
-  formValues ={days:10,hours:12,minutes:34,seconds:60};
+  formValues = { days: 10, hours: 12, minutes: 34, seconds: 60 };
 
   createForm() {
     this.countdownForm = this.$fb.group({
@@ -27,7 +27,8 @@ export class AppComponent {
   updateValues() {
     if (this.countdownForm.valid) {
       this.countdownForm = null;
-      this.countdownForm = this.countdownForm.value;
+      console.log(this.countdownForm.value, 'value');
+      this.formValues = this.countdownForm.value;
     }
   }
 }
